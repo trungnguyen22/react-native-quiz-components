@@ -3,6 +3,7 @@ import { View, Button, SafeAreaView, StatusBar, ScrollView, StyleSheet } from 'r
 import StepProgressBar from './src/components/StepProgressBar';
 import EmotionRatingBar from './src/components/EmotionRatingBar';
 import SelectionList from './src/components/SelectionList';
+import RadioButtonGroup from './src/components/RadioButtonGroup';
 
 class App extends Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class App extends Component {
     return (
       <Fragment>
         <StatusBar barStyle="dark-content" />
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: 'rgb(245, 245, 245)' }}>
           <ScrollView style={{ flex: 1 }}>
             <View style={{ flex: 1 }}>
               <StepProgressBar steps={4} isAtStep={step} isShownIndicator />
@@ -44,7 +45,16 @@ class App extends Component {
                 containerStyle={{ marginTop: 16 }}
                 onItemPress={this.onEmotionItemPress}
               />
-              <SelectionList />
+              <SelectionList
+                onItemPress={index => {
+                  console.log(index);
+                }}
+              />
+              <RadioButtonGroup
+                onItemPress={index => {
+                  console.log(index);
+                }}
+              />
             </View>
           </ScrollView>
         </SafeAreaView>

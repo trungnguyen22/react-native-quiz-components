@@ -33,13 +33,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'white'
   },
   selectedBGColor: {
-    backgroundColor: 'green'
+    backgroundColor: 'rgb(57, 184, 24)'
   },
   defaultBorderColor: {
     borderColor: 'lightgray'
   },
   selectedBorderColor: {
-    borderColor: 'green'
+    borderColor: 'rgb(57, 184, 24)'
   },
   label: {
     fontSize: 14,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     paddingRight: 20
   },
   defaultLabelColor: {
-    color: 'black'
+    color: 'rgb(36, 37, 61)'
   },
   selectedLabelColor: {
     color: 'white'

@@ -51,6 +51,7 @@ export default class SelectionList extends PureComponent {
       return mappedItem;
     });
     this.setState({ dataSource: mappedDataSource });
+    this.props.onItemPress(index);
   };
 
   renderSelectionItems = () => {
@@ -67,8 +68,8 @@ export default class SelectionList extends PureComponent {
   };
 
   render() {
-    const { selectionItems = DUMMY_DATA } = this.props;
-    this.state.dataSource = selectionItems;
+    const { dataSource = DUMMY_DATA } = this.props;
+    this.state.dataSource = dataSource;
     return (
       <View style={{ marginTop: 16, padding: 8, flexDirection: 'row', flexWrap: 'wrap' }}>
         {this.renderSelectionItems()}

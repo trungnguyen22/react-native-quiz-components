@@ -13,7 +13,7 @@ export default class EmotionItem extends PureComponent {
         }}
       >
         <Image source={imageSource} />
-        <Text style={{ marginTop: 8 }}>{label}</Text>
+        <Text style={{ marginTop: 8, fontSize: 12 }}>{label}</Text>
       </TouchableOpacity>
     );
   }
