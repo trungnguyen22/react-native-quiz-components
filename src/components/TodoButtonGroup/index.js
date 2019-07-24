@@ -2,29 +2,6 @@ import React, { PureComponent } from 'react';
 import { Text, View } from 'react-native';
 import TodoButton from './TodoButton';
 
-const DUMMY_DATA = [
-  {
-    label: 'You are Super Man',
-    isSelected: false,
-    value: 0
-  },
-  {
-    label: "I'm Badman",
-    isSelected: false,
-    value: 1
-  },
-  {
-    label: 'Lorem ipsum forthenis',
-    isSelected: false,
-    value: 2
-  },
-  {
-    label: 'You are Super Man You are Super Man You are Super Man You are Super Man You ',
-    isSelected: false,
-    value: 3
-  }
-];
-
 class TodoButtonGroup extends PureComponent {
   constructor(props) {
     super(props);
@@ -35,19 +12,17 @@ class TodoButtonGroup extends PureComponent {
 
   onItemPress = index => {
     const { dataSource } = this.state;
-    const mappedDataSource = dataSource.map((item, itemIndex) => {
-      const mappedItem = item;
-      if (index === itemIndex) {
-        mappedItem.isSelected = !mappedItem.isSelected;
-      }
-      return mappedItem;
-    });
-    this.setState({ dataSource: mappedDataSource });
-    this.props.onItemPress(index);
+    const newDataSource = [...dataSource];
+    newDataSource[index].isSelected = !newDataSource[index].isSelected;
+    this.setState({ dataSource: newDataSource });
+    this.props.onItemPress(dataSource, dataSource[index]);
   };
 
   onItemChangeText = (index, text) => {
-    this.props.onItemChangeText(index, text);
+    const { dataSource } = this.state;
+    const newDataSource = [...dataSource];
+    newDataSource[index].value = text;
+    this.setState({ dataSource: newDataSource });
   };
 
   renderTodoButtons = () => {
@@ -57,6 +32,7 @@ class TodoButtonGroup extends PureComponent {
         key={index}
         index={index}
         label={item.label}
+        textInputValue={item.value}
         isSelected={item.isSelected}
         isShownTextBox={item.isShownTextBox}
         onPress={this.onItemPress}
@@ -66,11 +42,11 @@ class TodoButtonGroup extends PureComponent {
   };
 
   render() {
-    const { todoButtonItems = DUMMY_DATA, containerStyle } = this.props;
+    const { dataSource, containerStyle } = this.props;
     if (this.state.dataSource === undefined) {
       this.state.dataSource = [
-        ...todoButtonItems,
-        { label: 'Other', isShownTextBox: true, isSelected: false }
+        ...dataSource,
+        { label: 'Other', isShownTextBox: true, isSelected: false, value: '' }
       ];
     }
     return <View style={{ padding: 16, ...containerStyle }}>{this.renderTodoButtons()}</View>;

@@ -2,37 +2,6 @@ import React, { PureComponent } from 'react';
 import { Text, View } from 'react-native';
 import SelectionItem from './SelectionItem';
 
-const DUMMY_DATA = [
-  {
-    label: 'Travelling',
-    isSelected: false
-  },
-  {
-    label: 'Hangout with your friends',
-    isSelected: false
-  },
-  {
-    label: 'Stay At Home and Do Nothing',
-    isSelected: false
-  },
-  {
-    label: 'Just listening Music',
-    isSelected: false
-  },
-  {
-    label: 'Reading Books',
-    isSelected: false
-  },
-  {
-    label: 'Playing Games',
-    isSelected: false
-  },
-  {
-    label: 'Coding Side Project',
-    isSelected: false
-  }
-];
-
 export default class SelectionList extends PureComponent {
   constructor(props) {
     super(props);
@@ -43,15 +12,11 @@ export default class SelectionList extends PureComponent {
 
   onPress = index => {
     const { dataSource } = this.state;
-    const mappedDataSource = dataSource.map((item, itemIndex) => {
-      const mappedItem = item;
-      if (index === itemIndex) {
-        mappedItem.isSelected = !mappedItem.isSelected;
-      }
-      return mappedItem;
-    });
-    this.setState({ dataSource: mappedDataSource });
-    this.props.onItemPress(index);
+    const newDataSource = [...dataSource];
+    newDataSource[index].isSelected = !newDataSource[index].isSelected;
+    this.setState({ dataSource: newDataSource });
+    this.props.onItemPress(dataSource, dataSource[index]);
+    this.props.onItemPress(dataSource, dataSource[index]);
   };
 
   renderSelectionItems = () => {
@@ -68,7 +33,7 @@ export default class SelectionList extends PureComponent {
   };
 
   render() {
-    const { dataSource = DUMMY_DATA } = this.props;
+    const { dataSource } = this.props;
     this.state.dataSource = dataSource;
     return (
       <View style={{ marginTop: 16, padding: 8, flexDirection: 'row', flexWrap: 'wrap' }}>

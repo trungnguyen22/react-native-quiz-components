@@ -7,12 +7,20 @@ const unSelectedRadioButtonImage = require('./img/ic_to_do_list_off.png');
 
 export class TodoButton extends PureComponent {
   render() {
-    const { index, label, isSelected, isShownTextBox, onPress, onChangeText } = this.props;
+    const {
+      index,
+      label,
+      textInputValue,
+      isSelected,
+      isShownTextBox,
+      onPress,
+      onChangeText
+    } = this.props;
     const imageSource = isSelected ? selectedRadioButtonImage : unSelectedRadioButtonImage;
     const textStyle = isSelected ? { fontWeight: 'bold' } : {};
     return (
-      <BouncingButton
-        activeOpacity={0.2}
+      <TouchableOpacity
+        activeOpacity={1}
         onPress={() => {
           onPress(index);
         }}
@@ -22,7 +30,7 @@ export class TodoButton extends PureComponent {
             <Image source={imageSource} />
             <Text style={{ ...styles.text, ...textStyle }}>{label}</Text>
           </View>
-          {isShownTextBox && isSelected ? (
+          {isShownTextBox && isSelected && (
             <TextInput
               style={{
                 marginLeft: 24 + 12,
@@ -34,14 +42,15 @@ export class TodoButton extends PureComponent {
                 minHeight: 71
               }}
               placeholder={'Nhập nội dung'}
+              value={textInputValue}
               multiline
               onChangeText={text => {
                 onChangeText(index, text);
               }}
             />
-          ) : null}
+          )}
         </View>
-      </BouncingButton>
+      </TouchableOpacity>
     );
   }
 }

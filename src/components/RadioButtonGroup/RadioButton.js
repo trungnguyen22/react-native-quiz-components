@@ -14,8 +14,8 @@ class RadioButton extends PureComponent {
       type === TYPE.CHECK_LIST ? { borderRadius: 44 / 2 } : { borderRadius: 8 };
     const containerOpacity = isSelected ? { opacity: 1 } : { opacity: 0.6 };
     return (
-      <BouncingButton
-        activeOpacity={0.2}
+      <TouchableOpacity
+        activeOpacity={1}
         onPress={() => {
           onPress(index);
         }}
@@ -24,7 +24,7 @@ class RadioButton extends PureComponent {
           <Image source={imageSource} />
           <Text style={{ ...styles.text }}>{label}</Text>
         </View>
-      </BouncingButton>
+      </TouchableOpacity>
     );
   }
 }

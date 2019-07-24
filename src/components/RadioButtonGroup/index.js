@@ -2,29 +2,6 @@ import React, { PureComponent } from 'react';
 import { Text, View } from 'react-native';
 import RadioButton from './RadioButton';
 
-const DUMMY_DATA = [
-  {
-    label: 'You are Super Man',
-    isSelected: false,
-    value: 0
-  },
-  {
-    label: "I'm Badman",
-    isSelected: false,
-    value: 1
-  },
-  {
-    label: 'Lorem ipsum forthenis',
-    isSelected: false,
-    value: 2
-  },
-  {
-    label: 'You are Super Man You are Super Man You are Super Man You are Super Man You ',
-    isSelected: false,
-    value: 3
-  }
-];
-
 export const TYPE = {
   CHECK_LIST: 'check_list',
   QUESTION: 'question'
@@ -50,7 +27,7 @@ class RadioButtonGroup extends PureComponent {
       return mappedItem;
     });
     this.setState({ dataSource: mappedDataSource });
-    this.props.onItemPress(index);
+    this.props.onItemPress(dataSource, dataSource[index]);
   };
 
   renderRadioButtons = type => {
@@ -68,7 +45,7 @@ class RadioButtonGroup extends PureComponent {
   };
 
   render() {
-    const { dataSource = DUMMY_DATA, type = TYPE.CHECK_LIST, containerStyle } = this.props;
+    const { dataSource, type = TYPE.CHECK_LIST, containerStyle } = this.props;
     this.state.dataSource = dataSource;
     return <View style={{ padding: 10, ...containerStyle }}>{this.renderRadioButtons(type)}</View>;
   }

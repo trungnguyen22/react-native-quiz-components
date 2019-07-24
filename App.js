@@ -1,10 +1,19 @@
 import React, { Fragment, Component } from 'react';
-import { View, Button, SafeAreaView, StatusBar, ScrollView, StyleSheet } from 'react-native';
+import {
+  View,
+  Button,
+  SafeAreaView,
+  StatusBar,
+  ScrollView,
+  StyleSheet,
+  Platform
+} from 'react-native';
 import StepProgressBar from './src/components/StepProgressBar';
 import EmotionRatingBar from './src/components/EmotionRatingBar';
 import SelectionList from './src/components/SelectionList';
 import RadioButtonGroup from './src/components/RadioButtonGroup';
 import TodoButtonGroup from './src/components/TodoButtonGroup';
+import { DUMMY_DATA_CHECK_LIST, DUMMY_DATA_SELECTION_LIST } from './src/constants/Constants';
 
 class App extends Component {
   constructor(props) {
@@ -31,6 +40,27 @@ class App extends Component {
 
   onEmotionItemPress = item => {};
 
+  renderButtons = () => (
+    <View style={{ padding: 16 }}>
+      <View
+        style={{
+          marginTop: 8,
+          backgroundColor: Platform.OS === 'ios' ? 'lightgray' : 'transparent'
+        }}
+      >
+        <Button title={'Next'} onPress={this.onNextPress} />
+      </View>
+      <View
+        style={{
+          marginTop: 8,
+          backgroundColor: Platform.OS === 'ios' ? 'lightgray' : 'transparent'
+        }}
+      >
+        <Button title={'Back'} onPress={this.onBackPress} />
+      </View>
+    </View>
+  );
+
   render() {
     const { step } = this.state;
     return (
@@ -40,28 +70,30 @@ class App extends Component {
           <ScrollView style={{ flex: 1 }}>
             <View style={{ flex: 1 }}>
               <StepProgressBar steps={4} isAtStep={step} isShownIndicator />
-              <Button title={'Next'} onPress={this.onNextPress} />
-              <Button title={'Back'} onPress={this.onBackPress} />
+              {this.renderButtons()}
               <EmotionRatingBar
                 containerStyle={{ marginTop: 16 }}
                 onItemPress={this.onEmotionItemPress}
               />
               <SelectionList
-                onItemPress={index => {
+                dataSource={DUMMY_DATA_SELECTION_LIST}
+                onItemPress={(dataSource, index) => {
+                  console.log(dataSource);
                   console.log(index);
                 }}
               />
               <RadioButtonGroup
-                onItemPress={index => {
-                  console.log(index);
+                dataSource={DUMMY_DATA_CHECK_LIST}
+                onItemPress={(dataSource, selectedItem) => {
+                  console.log(dataSource);
+                  console.log(selectedItem);
                 }}
               />
               <TodoButtonGroup
-                onItemPress={index => {
-                  console.log(index);
-                }}
-                onItemChangeText={(index, text) => {
-                  console.log(text);
+                dataSource={DUMMY_DATA_CHECK_LIST}
+                onItemPress={(dataSource, selectedItem) => {
+                  console.log(dataSource);
+                  console.log(selectedItem);
                 }}
               />
             </View>
