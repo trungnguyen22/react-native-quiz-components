@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import { Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import { BouncingButton } from '../../BouncingButton/index';
 
 export default class EmotionItem extends PureComponent {
   render() {

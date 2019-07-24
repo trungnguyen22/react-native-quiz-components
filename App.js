@@ -5,7 +5,6 @@ import {
   SafeAreaView,
   StatusBar,
   ScrollView,
-  StyleSheet,
   Platform
 } from 'react-native';
 import StepProgressBar from './src/components/StepProgressBar';
@@ -14,12 +13,12 @@ import SelectionList from './src/components/SelectionList';
 import RadioButtonGroup from './src/components/RadioButtonGroup';
 import TodoButtonGroup from './src/components/TodoButtonGroup';
 import { DUMMY_DATA_CHECK_LIST, DUMMY_DATA_SELECTION_LIST } from './src/constants/Constants';
+import SurveyTextInput, { INPUT_TYPE } from './src/components/SurveyTextInput/index';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPage: 1,
       step: 1
     };
   }
@@ -94,6 +93,20 @@ class App extends Component {
                 onItemPress={(dataSource, selectedItem) => {
                   console.log(dataSource);
                   console.log(selectedItem);
+                }}
+              />
+              <SurveyTextInput
+                inputType={INPUT_TYPE.TEXT}
+                containerStyle={{ margin: 12 }}
+                onChangeText={text => {
+                  console.log(text);
+                }}
+              />
+              <SurveyTextInput
+                inputType={INPUT_TYPE.NUMBER}
+                containerStyle={{ margin: 12 }}
+                onChangeText={text => {
+                  console.log(text);
                 }}
               />
             </View>

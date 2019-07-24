@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import { Text, View, Image, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
-import { BouncingButton } from '../../BouncingButton/index';
 
 const selectedRadioButtonImage = require('./img/ic_to_do_list_on.png');
 const unSelectedRadioButtonImage = require('./img/ic_to_do_list_off.png');
@@ -39,7 +38,9 @@ export class TodoButton extends PureComponent {
                 borderWidth: 1,
                 borderRadius: 6,
                 borderColor: 'rgb(48, 143, 233)',
-                minHeight: 71
+                minHeight: 71,
+                backgroundColor: 'white',
+                textAlignVertical: 'top'
               }}
               placeholder={'Nhập nội dung'}
               value={textInputValue}
