@@ -4,6 +4,7 @@ import StepProgressBar from './src/components/StepProgressBar';
 import EmotionRatingBar from './src/components/EmotionRatingBar';
 import SelectionList from './src/components/SelectionList';
 import RadioButtonGroup from './src/components/RadioButtonGroup';
+import TodoButtonGroup from './src/components/TodoButtonGroup';
 
 class App extends Component {
   constructor(props) {
@@ -53,6 +54,14 @@ class App extends Component {
               <RadioButtonGroup
                 onItemPress={index => {
                   console.log(index);
+                }}
+              />
+              <TodoButtonGroup
+                onItemPress={index => {
+                  console.log(index);
+                }}
+                onItemChangeText={(index, text) => {
+                  console.log(text);
                 }}
               />
             </View>

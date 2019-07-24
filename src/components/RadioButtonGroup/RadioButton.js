@@ -1,19 +1,20 @@
 import React, { PureComponent } from 'react';
 import { Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { TYPE } from './index';
+import { BouncingButton } from '../../BouncingButton/index';
 
-const selectedRadioButton = require('./img/ic_tick_on.png');
-const unSelectedRadioButton = require('./img/ic_tick_off.png');
+const selectedRadioButtonImage = require('./img/ic_tick_on.png');
+const unSelectedRadioButtonImage = require('./img/ic_tick_off.png');
 
 class RadioButton extends PureComponent {
   render() {
     const { index, label, type = TYPE.CHECK_LIST, isSelected = false, onPress } = this.props;
-    const imageSource = isSelected ? selectedRadioButton : unSelectedRadioButton;
+    const imageSource = isSelected ? selectedRadioButtonImage : unSelectedRadioButtonImage;
     const containerBorderRadius =
       type === TYPE.CHECK_LIST ? { borderRadius: 44 / 2 } : { borderRadius: 8 };
     const containerOpacity = isSelected ? { opacity: 1 } : { opacity: 0.6 };
     return (
-      <TouchableOpacity
+      <BouncingButton
         activeOpacity={0.2}
         onPress={() => {
           onPress(index);
@@ -23,7 +24,7 @@ class RadioButton extends PureComponent {
           <Image source={imageSource} />
           <Text style={{ ...styles.text }}>{label}</Text>
         </View>
-      </TouchableOpacity>
+      </BouncingButton>
     );
   }
 }
