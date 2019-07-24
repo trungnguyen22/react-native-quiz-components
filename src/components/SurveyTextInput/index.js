@@ -13,7 +13,8 @@ class SurveyTextInput extends PureComponent {
       size: { height: 107, minHeight: 107 },
       placeholder: 'Nhập nội dung',
       textAlign: {},
-      multiline: true
+      multiline: true,
+      textAlignVertical: { textAlignVertical: 'top' }
     },
     NUMBER: {
       keyboardType: 'number-pad',
@@ -24,16 +25,16 @@ class SurveyTextInput extends PureComponent {
   };
 
   render() {
-    const { inputType, containerStyle } = this.props;
+    const { inputType, containerStyle, onChangeText } = this.props;
 
-    const { keyboardType, size, placeholder, textAlign, multiline, onChangeText } = this.TYPE[
+    const { keyboardType, size, placeholder, textAlign, multiline, textAlignVertical } = this.TYPE[
       inputType
     ];
 
     return (
       <View style={{ ...containerStyle }}>
         <TextInput
-          style={{ ...styles.textInput, ...size, ...textAlign }}
+          style={{ ...styles.textInput, ...size, ...textAlign, ...textAlignVertical }}
           keyboardType={keyboardType}
           placeholder={placeholder}
           multiline={multiline}
@@ -51,8 +52,7 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 6,
     borderColor: 'rgb(48, 143, 233)',
-    fontSize: 14,
-    textAlignVertical: 'top'
+    fontSize: 14
   }
 });
 
