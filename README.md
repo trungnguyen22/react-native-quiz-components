@@ -1,6 +1,16 @@
 # react-native-components-for-survey-form
 Survey Form
 
+## iOS
+cd ios
+Run cmd: 
+pod deintegrate
+sudo gem install cocoapods-clean
+pod clean
+pod setup
+pod install
+
+
 ## Demo
 
 
