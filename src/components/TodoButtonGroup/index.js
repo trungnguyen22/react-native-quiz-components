@@ -12,9 +12,14 @@ class TodoButtonGroup extends PureComponent {
 
   onItemPress = index => {
     const { dataSource } = this.state;
-    const newDataSource = [...dataSource];
-    newDataSource[index].isSelected = !newDataSource[index].isSelected;
-    this.setState({ dataSource: newDataSource });
+    const mappedDataSource = dataSource.map((item, itemIndex) => {
+      const mappedItem = Object.assign({}, item);
+      if (index === itemIndex) {
+        mappedItem.isSelected = !mappedItem.isSelected;
+      }
+      return mappedItem;
+    });
+    this.setState({ dataSource: mappedDataSource });
     this.props.onItemPress(dataSource, dataSource[index]);
   };
 
