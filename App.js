@@ -1,19 +1,18 @@
 import React, { Fragment, Component } from 'react';
-import {
-  View,
-  Button,
-  SafeAreaView,
-  StatusBar,
-  ScrollView,
-  Platform
-} from 'react-native';
+import { View, Button, SafeAreaView, StatusBar, ScrollView, Platform } from 'react-native';
 import StepProgressBar from './src/components/StepProgressBar';
 import EmotionRatingBar from './src/components/EmotionRatingBar';
 import SelectionList from './src/components/SelectionList';
-import RadioButtonGroup from './src/components/RadioButtonGroup';
+import RadioButtonGroup, { TYPE } from './src/components/RadioButtonGroup';
 import TodoButtonGroup from './src/components/TodoButtonGroup';
-import { DUMMY_DATA_CHECK_LIST, DUMMY_DATA_SELECTION_LIST } from './src/constants/Constants';
+import {
+  DUMMY_DATA_CHECK_LIST,
+  DUMMY_DATA_SELECTION_LIST,
+  DUMMY_DATA_REVIEW_RATING
+} from './src/constants/Constants';
 import SurveyTextInput, { INPUT_TYPE } from './src/components/SurveyTextInput/index';
+import ReviewRatingItem from './src/components/ReviewRatingBar/ReviewRatingItem';
+import ReviewRatingContainer from './src/components/ReviewRatingBar';
 
 class App extends Component {
   constructor(props) {
@@ -37,7 +36,9 @@ class App extends Component {
     this.setState({ step: newStep });
   };
 
-  onEmotionItemPress = item => {};
+  onEmotionItemPress = item => {
+    console.log('EmotionItem: ', item);
+  };
 
   renderButtons = () => (
     <View style={{ padding: 16 }}>
@@ -68,6 +69,15 @@ class App extends Component {
         <SafeAreaView style={{ flex: 1, backgroundColor: 'rgb(245, 245, 245)' }}>
           <ScrollView style={{ flex: 1 }}>
             <View style={{ flex: 1 }}>
+              <ReviewRatingContainer
+                dataSource={DUMMY_DATA_REVIEW_RATING}
+                onItemPress={(dataSource, item, value) => {
+                  console.log('ReviewRatingBar: ', dataSource);
+                  console.log('ReviewRatingBar: ', item);
+                  console.log('ReviewRatingBar: ', value);
+                }}
+              />
+
               <StepProgressBar steps={4} isAtStep={step} isShownIndicator />
               {this.renderButtons()}
               <EmotionRatingBar
@@ -77,36 +87,45 @@ class App extends Component {
               <SelectionList
                 dataSource={DUMMY_DATA_SELECTION_LIST}
                 onItemPress={(dataSource, index) => {
-                  console.log(dataSource);
-                  console.log(index);
+                  console.log('SelectionList: ', dataSource);
+                  console.log('SelectionList: ', index);
                 }}
               />
               <RadioButtonGroup
                 dataSource={DUMMY_DATA_CHECK_LIST}
+                type={TYPE.CHECK_LIST}
                 onItemPress={(dataSource, selectedItem) => {
-                  console.log(dataSource);
-                  console.log(selectedItem);
+                  console.log('RadioButtonGroup: ', dataSource);
+                  console.log('RadioButtonGroup: ', selectedItem);
+                }}
+              />
+              <RadioButtonGroup
+                dataSource={DUMMY_DATA_CHECK_LIST}
+                type={TYPE.QUESTION}
+                onItemPress={(dataSource, selectedItem) => {
+                  console.log('RadioButtonGroup: ', dataSource);
+                  console.log('RadioButtonGroup: ', selectedItem);
                 }}
               />
               <TodoButtonGroup
                 dataSource={DUMMY_DATA_CHECK_LIST}
                 onItemPress={(dataSource, selectedItem) => {
-                  console.log(dataSource);
-                  console.log(selectedItem);
+                  console.log('TodoButtonGroup: ', dataSource);
+                  console.log('TodoButtonGroup: ', selectedItem);
                 }}
               />
               <SurveyTextInput
                 inputType={INPUT_TYPE.TEXT}
                 containerStyle={{ margin: 12 }}
                 onChangeText={text => {
-                  console.log(text);
+                  console.log('SurveyTextInput: ', text);
                 }}
               />
               <SurveyTextInput
                 inputType={INPUT_TYPE.NUMBER}
                 containerStyle={{ margin: 12 }}
                 onChangeText={text => {
-                  console.log(text);
+                  console.log('SurveyTextInput: ', text);
                 }}
               />
             </View>

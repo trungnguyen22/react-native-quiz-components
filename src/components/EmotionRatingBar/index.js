@@ -6,27 +6,32 @@ const EMOTION_ITEMS = [
   {
     imageOn: require('./img/ic_very_bad_on.png'),
     imageOff: require('./img/ic_very_bad_off.png'),
-    label: 'Very bad'
+    label: 'Very bad',
+    value: 1
   },
   {
     imageOn: require('./img/ic_bad_on.png'),
     imageOff: require('./img/ic_bad_off.png'),
-    label: 'Bad'
+    label: 'Bad',
+    value: 2
   },
   {
     imageOn: require('./img/ic_ok_on.png'),
     imageOff: require('./img/ic_ok_off.png'),
-    label: 'Okay'
+    label: 'Okay',
+    value: 3
   },
   {
     imageOn: require('./img/ic_good_on.png'),
     imageOff: require('./img/ic_good_off.png'),
-    label: 'Good'
+    label: 'Good',
+    value: 4
   },
   {
     imageOn: require('./img/ic_very_good_on.png'),
     imageOff: require('./img/ic_very_good_off.png'),
-    label: 'Very Good'
+    label: 'Very Good',
+    value: 5
   }
 ];
 

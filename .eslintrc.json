@@ -8,6 +8,8 @@
   ],
   "parser": "babel-eslint",
   "rules": {
+    "react/no-array-index-key": "off",
+    "react/prop-types": "off",
     "no-use-before-define": "off",
     "import/no-unresolved": "off",
     "react/jsx-filename-extension": [

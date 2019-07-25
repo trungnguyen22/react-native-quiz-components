@@ -11,7 +11,8 @@ class RadioButtonGroup extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      dataSource: []
+      dataSource: [],
+      isActive: false
     };
   }
 
@@ -19,19 +20,18 @@ class RadioButtonGroup extends PureComponent {
     const { dataSource } = this.state;
     const mappedDataSource = dataSource.map((item, itemIndex) => {
       const mappedItem = item;
+      mappedItem.isSelected = false;
       if (index === itemIndex) {
         mappedItem.isSelected = !mappedItem.isSelected;
-        return mappedItem;
       }
-      mappedItem.isSelected = false;
       return mappedItem;
     });
-    this.setState({ dataSource: mappedDataSource });
+    this.setState({ dataSource: mappedDataSource, isActive: true });
     this.props.onItemPress(dataSource, dataSource[index]);
   };
 
   renderRadioButtons = type => {
-    const { dataSource } = this.state;
+    const { dataSource, isActive } = this.state;
     return dataSource.map((item, index) => (
       <RadioButton
         key={index}
@@ -39,6 +39,7 @@ class RadioButtonGroup extends PureComponent {
         label={item.label}
         type={type}
         isSelected={item.isSelected}
+        isActive={isActive}
         onPress={this.onRadioButtonPress}
       />
     ));

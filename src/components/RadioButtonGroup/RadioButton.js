@@ -8,11 +8,18 @@ const unSelectedRadioButtonImage = require('./img/ic_tick_off.png');
 
 class RadioButton extends PureComponent {
   render() {
-    const { index, label, type = TYPE.CHECK_LIST, isSelected = false, onPress } = this.props;
+    const {
+      index,
+      label,
+      type = TYPE.CHECK_LIST,
+      isSelected = false,
+      isActive,
+      onPress
+    } = this.props;
     const imageSource = isSelected ? selectedRadioButtonImage : unSelectedRadioButtonImage;
     const containerBorderRadius =
       type === TYPE.CHECK_LIST ? { borderRadius: 44 / 2 } : { borderRadius: 8 };
-    const containerOpacity = isSelected ? { opacity: 1 } : { opacity: 0.6 };
+    const containerOpacity = isSelected || !isActive ? { opacity: 1 } : { opacity: 0.6 };
     return (
       <TouchableOpacity
         activeOpacity={1}

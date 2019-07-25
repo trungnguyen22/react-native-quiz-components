@@ -26,7 +26,6 @@ class SurveyTextInput extends PureComponent {
 
   render() {
     const { inputType, containerStyle, onChangeText } = this.props;
-
     const { keyboardType, size, placeholder, textAlign, multiline, textAlignVertical } = this.TYPE[
       inputType
     ];
