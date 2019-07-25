@@ -8,6 +8,7 @@
   ],
   "parser": "babel-eslint",
   "rules": {
+    "react/destructuring-assignment": "off",
     "import/prefer-default-export": "off",
     "react/no-array-index-key": "off",
     "react/prop-types": "off",
