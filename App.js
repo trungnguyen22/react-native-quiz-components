@@ -85,14 +85,16 @@ class App extends Component {
                 onItemPress={this.onEmotionItemPress}
               />
               <SelectionList
-                dataSource={DUMMY_DATA_SELECTION_LIST}
+                dataSource={[...DUMMY_DATA_SELECTION_LIST]}
                 onItemPress={(dataSource, index) => {
                   console.log('SelectionList: ', dataSource);
                   console.log('SelectionList: ', index);
                 }}
               />
               <RadioButtonGroup
-                dataSource={DUMMY_DATA_CHECK_LIST}
+                dataSource={DUMMY_DATA_CHECK_LIST.map(item => {
+                  return Object.assign({}, item);
+                })}
                 type={TYPE.CHECK_LIST}
                 onItemPress={(dataSource, selectedItem) => {
                   console.log('RadioButtonGroup: ', dataSource);
@@ -100,7 +102,9 @@ class App extends Component {
                 }}
               />
               <RadioButtonGroup
-                dataSource={DUMMY_DATA_CHECK_LIST}
+                dataSource={DUMMY_DATA_CHECK_LIST.map(item => {
+                  return Object.assign({}, item);
+                })}
                 type={TYPE.QUESTION}
                 onItemPress={(dataSource, selectedItem) => {
                   console.log('RadioButtonGroup: ', dataSource);
@@ -108,7 +112,9 @@ class App extends Component {
                 }}
               />
               <TodoButtonGroup
-                dataSource={DUMMY_DATA_CHECK_LIST}
+                dataSource={DUMMY_DATA_CHECK_LIST.map(item => {
+                  return Object.assign({}, item);
+                })}
                 onItemPress={(dataSource, selectedItem) => {
                   console.log('TodoButtonGroup: ', dataSource);
                   console.log('TodoButtonGroup: ', selectedItem);

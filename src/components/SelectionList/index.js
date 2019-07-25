@@ -16,7 +16,6 @@ export default class SelectionList extends PureComponent {
     newDataSource[index].isSelected = !newDataSource[index].isSelected;
     this.setState({ dataSource: newDataSource });
     this.props.onItemPress(dataSource, dataSource[index]);
-    this.props.onItemPress(dataSource, dataSource[index]);
   };
 
   renderSelectionItems = () => {
