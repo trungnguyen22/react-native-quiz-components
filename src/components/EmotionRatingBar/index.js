@@ -48,7 +48,7 @@ class EmotionRatingBar extends PureComponent {
         selectedImage={item.imageOn}
         unselectedImage={item.imageOff}
         label={item.label}
-        isSelected={selectedIndex}
+        isSelected={selectedIndex === index}
         onPress={this.onItemPress}
       />
     ));

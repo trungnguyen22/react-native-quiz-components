@@ -5,33 +5,17 @@ import TodoButton from './TodoButton';
 class TodoButtonGroup extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      dataSource: undefined
-    };
   }
 
   onItemPress = index => {
-    const { dataSource } = this.state;
-    const mappedDataSource = dataSource.map((item, itemIndex) => {
-      const mappedItem = item;
-      if (index === itemIndex) {
-        mappedItem.isSelected = !mappedItem.isSelected;
-      }
-      return mappedItem;
-    });
-    this.setState({ dataSource: mappedDataSource });
-    this.props.onItemPress(dataSource, dataSource[index]);
+    this.props.onItemPress(index);
   };
 
   onItemChangeText = (index, text) => {
-    const { dataSource } = this.state;
-    const newDataSource = [...dataSource];
-    newDataSource[index].value = text;
-    this.setState({ dataSource: newDataSource });
+    this.props.onItemTextChange(index, text);
   };
 
-  renderTodoButtons = () => {
-    const { dataSource } = this.state;
+  renderTodoButtons = (dataSource) => {
     return dataSource.map((item, index) => (
       <TodoButton
         key={index}
@@ -48,13 +32,7 @@ class TodoButtonGroup extends PureComponent {
 
   render() {
     const { dataSource, containerStyle } = this.props;
-    if (this.state.dataSource === undefined) {
-      this.state.dataSource = [
-        ...dataSource,
-        { label: 'Other', isShownTextBox: true, isSelected: false, value: '' }
-      ];
-    }
-    return <View style={{ padding: 16, ...containerStyle }}>{this.renderTodoButtons()}</View>;
+    return <View style={{ padding: 16, ...containerStyle }}>{this.renderTodoButtons(dataSource)}</View>;
   }
 }
 

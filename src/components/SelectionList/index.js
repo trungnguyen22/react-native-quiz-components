@@ -5,21 +5,13 @@ import SelectionItem from './SelectionItem';
 export default class SelectionList extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      dataSource: []
-    };
   }
 
   onPress = index => {
-    const { dataSource } = this.state;
-    const newDataSource = [...dataSource];
-    newDataSource[index].isSelected = !newDataSource[index].isSelected;
-    this.setState({ dataSource: newDataSource });
-    this.props.onItemPress(dataSource, dataSource[index]);
+    this.props.onItemPress(index);
   };
 
-  renderSelectionItems = () => {
-    const { dataSource } = this.state;
+  renderSelectionItems = (dataSource) => {
     return dataSource.map((item, index) => (
       <SelectionItem
         key={index}
@@ -33,10 +25,9 @@ export default class SelectionList extends PureComponent {
 
   render() {
     const { dataSource } = this.props;
-    this.state.dataSource = dataSource;
     return (
       <View style={{ marginTop: 16, padding: 8, flexDirection: 'row', flexWrap: 'wrap' }}>
-        {this.renderSelectionItems()}
+        {this.renderSelectionItems(dataSource)}
       </View>
     );
   }

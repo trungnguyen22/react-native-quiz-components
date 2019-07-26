@@ -11,34 +11,24 @@ class RadioButtonGroup extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      dataSource: [],
       isActive: false
     };
   }
 
-  onRadioButtonPress = index => {
-    const { dataSource } = this.state;
-    const mappedDataSource = dataSource.map((item, itemIndex) => {
-      const mappedItem = item;
-      mappedItem.isSelected = false;
-      if (index === itemIndex) {
-        mappedItem.isSelected = !mappedItem.isSelected;
-      }
-      return mappedItem;
-    });
-    this.setState({ dataSource: mappedDataSource, isActive: true });
-    this.props.onItemPress(dataSource, dataSource[index]);
+  onRadioButtonPress = (index) => {
+    this.setState({ isActive: true });
+    this.props.onItemPress(index);
   };
 
-  renderRadioButtons = type => {
-    const { dataSource, isActive } = this.state;
+  renderRadioButtons = (type, dataSource, selectedIndex) => {
+    const { isActive } = this.state;
     return dataSource.map((item, index) => (
       <RadioButton
         key={index}
         index={index}
         label={item.label}
         type={type}
-        isSelected={item.isSelected}
+        isSelected={selectedIndex === index}
         isActive={isActive}
         onPress={this.onRadioButtonPress}
       />
@@ -46,9 +36,12 @@ class RadioButtonGroup extends PureComponent {
   };
 
   render() {
-    const { dataSource, type = TYPE.CHECK_LIST, containerStyle } = this.props;
-    this.state.dataSource = dataSource;
-    return <View style={{ padding: 10, ...containerStyle }}>{this.renderRadioButtons(type)}</View>;
+    const { dataSource, selectedIndex, type = TYPE.CHECK_LIST, containerStyle } = this.props;
+    return (
+      <View style={{ padding: 10, ...containerStyle }}>
+        {this.renderRadioButtons(type, dataSource, selectedIndex)}
+      </View>
+    );
   }
 }
 
