@@ -4,7 +4,7 @@ import ReviewRatingItem from './ReviewRatingItem';
 
 export class ReviewRatingContainer extends PureComponent {
   onItemPress = (item, index, value) => {
-    this.props.onItemPress(index);
+    this.props.onItemPress(index, value);
   };
 
   renderHeaderTitle = dataSource => {
