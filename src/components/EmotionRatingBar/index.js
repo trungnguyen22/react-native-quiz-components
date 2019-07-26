@@ -36,40 +36,29 @@ const EMOTION_ITEMS = [
 ];
 
 class EmotionRatingBar extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedIndex: -1
-    };
-  }
-
-  onItemPress = index => {
-    const { emotionItems = EMOTION_ITEMS } = this.props;
-    this.setState({ selectedIndex: index });
-    this.props.onItemPress(emotionItems[index]);
+  onItemPress = (index) => {
+    this.props.onItemPress(index);
   };
 
-  renderEmotionRatingBar = emotionItems => {
-    const { selectedIndex } = this.state;
-    const items = Array.from({ length: 5 });
-    return items.map((_, i) => (
+  renderEmotionRatingBar = (emotionItems, selectedIndex) => {
+    return emotionItems.map((item, index) => (
       <EmotionItem
-        key={i}
-        index={i}
-        selectedImage={emotionItems[i].imageOn}
-        unselectedImage={emotionItems[i].imageOff}
-        label={emotionItems[i].label}
-        isSelected={i === selectedIndex}
+        key={index}
+        index={index}
+        selectedImage={item.imageOn}
+        unselectedImage={item.imageOff}
+        label={item.label}
+        isSelected={selectedIndex}
         onPress={this.onItemPress}
       />
     ));
   };
 
   render() {
-    const { containerStyle, emotionItems = EMOTION_ITEMS } = this.props;
+    const { containerStyle, emotionItems = EMOTION_ITEMS, selectedIndex } = this.props;
     return (
       <View style={[styles.container, containerStyle]}>
-        {this.renderEmotionRatingBar(emotionItems)}
+        {this.renderEmotionRatingBar(emotionItems, selectedIndex)}
       </View>
     );
   }
