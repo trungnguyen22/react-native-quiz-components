@@ -4,7 +4,6 @@ Survey Form
 ## iOS
 If got error when build iOS. Let's try:<br/>
 cd ios<br/>
-Run cmd:<br/> 
 pod deintegrate<br/>
 sudo gem install cocoapods-clean<br/>
 pod clean<br/>
